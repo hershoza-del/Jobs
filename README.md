@@ -1,1 +1,1 @@
-I took a synthetic dataset of 5,000 AI and technology jobs for 2026 and use Python to change/rearrange the dataset, SQL for cross-checking it, and R to statistically confirm the clean dataset. Here's the code I utilized for this project:
+I took a synthetic dataset of 5,000 AI and technology jobs for 2026 and use Python to change/rearrange the dataset, SQL for cross-checking it, and R to statistically confirm the clean dataset. I have attached the Python and R code and SQL queries I've utilized for this project.
