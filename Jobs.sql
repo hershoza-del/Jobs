@@ -39,7 +39,7 @@ SELECT Job_Title, Company_Size, Work_Life_Balance,
 ROW_NUMBER() OVER (
 PARTITION BY Company_Size
 ORDER BY Work_Life_Balance DESC
-) AS rank_in_category
+) AS rank
 FROM jobs1;
 
 
