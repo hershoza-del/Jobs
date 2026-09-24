@@ -43,7 +43,10 @@ df = df.rename(columns={"Equity_Offered": "Has_Equity",
 
 #boxplot, barchart, and scatterplot charts
 fig, ax = plt.subplots(figsize=(8, 5))
-df.boxplot(column="Salary_USD", by="Experience_Level", ax=ax, grid=False)
+df.boxplot(column="Salary_USD", by="Experience_Level", ax=ax, grid=False,
+           patch_artist=True,
+           boxprops=dict(facecolor="yellow", edgecolor="black"),
+           color=dict(whiskers="black", caps="black", medians="black"))
 ax.set_title("Salary by Experience Level")
 fig.suptitle("")           
 ax.set_xlabel("Experience Level")
@@ -52,17 +55,14 @@ fig.tight_layout()
 fig.savefig(save_path("boxplot.png"), dpi=150)
 plt.close(fig)
 
-top_countries = df["Country"].value_counts().head(5).index
-subset = df[df["Country"].isin(top_countries)]
-counts = pd.crosstab(subset["Country"], subset["Experience_Level"])
-counts = counts.loc[top_countries]
+country = df["Country"].value_counts().head(5)
 
-fig, ax = plt.subplots(figsize=(10, 6))
-counts.plot(kind='bar', stacked=True, ax=ax, color='darkorange', edgecolor='white')
-ax.set_title("Job Postings by Country and Experience Level (Top 5 Countries)")
+fig, ax = plt.subplots(figsize=(8, 5))
+country.plot(kind='bar', stacked=True, ax=ax, color="red", edgecolor="black")
+ax.set_title("Number of Job Postings of Top 5 Countries (Including All Experience Levels)")
 ax.set_xlabel("Country")
 ax.set_ylabel("Number of Job Postings")
-ax.legend(title="Experience Level")
+ax.legend(["Country"])
 plt.xticks(rotation=20, ha="right")
 fig.tight_layout()
 fig.savefig(save_path("barchart.png"), dpi=150)
@@ -70,7 +70,7 @@ plt.close(fig)
 
 jitter = np.random.uniform(-0.2, 0.2, size=len(df))
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.scatter(df["Job_Satisfaction"] + jitter, df["Salary_USD"], alpha=0.1, s=10, color='seagreen') 
+ax.scatter(df["Job_Satisfaction"] + jitter, df["Salary_USD"], alpha=0.1, s=10, color="green") 
 ax.set_title("Salary vs. Job Satisfaction")
 ax.set_xlabel("Job Satisfaction (1-10)")
 ax.set_ylabel("Salary (USD)")
