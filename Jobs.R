@@ -3,11 +3,9 @@ library(dplyr)
 
 df <- read_excel("Downloads/Jobs1.xlsx") %>%
   rename(Remote_Pct = `Remote_Work_%`) %>%
-  mutate(
-    is_us            = Country == "United States",
-    Experience_Level = factor(Experience_Level, levels = c("Entry Level", "Mid Level",
-                                                           "Senior Level", "Lead Level", "Executive")),
-    Company_Size     = factor(Company_Size, levels = c("Small", "Medium", "Large", "Enterprise"))
+  mutate(is_us = Country == "United States", 
+         Experience_Level = factor(Experience_Level, levels = c("Entry Level", "Mid Level", "Senior Level", "Lead Level", "Executive")),
+         Company_Size = factor(Company_Size, levels = c("Small", "Medium", "Large", "Enterprise"))
   )
 
 # 1. t-test: US vs non-US salary
